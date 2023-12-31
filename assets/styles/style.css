@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,600&family=Roboto&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", "Courier New", Courier, monospace;
+}
+/* #C6A969,#597E52 */
+
+body {
+  background-color: #ffffec;
+}
+nav {
+  /* background-color: #f1e4c3; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+#nav-info {
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  color: #44446b;
+}
+.login-value input {
+  border: 2px;
+  border-radius: 1.2rem;
+  height: 2.3rem;
+  width: 7rem;
+  text-align: center;
+  margin-right: 0.5rem;
+  background-color: #f1e4c3;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.login-value input:focus {
+  outline: none;
+  border: 1px solid #597e52;
+  box-shadow: 0 0 5px #719ece;
+}
+#loginbtn {
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+#loginbtn:hover {
+  cursor: pointer;
+  color: #597e52;
+}
+.balance {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+  margin: auto;
+  /* padding-top: 2.5rem; */
+}
+#current-balance-label {
+  font-size: 1.5rem;
+  margin-top: 3.1rem;
+  margin-bottom: 0;
+}
+#date {
+  margin-top: 0;
+  color: #44446b;
+  font-size: 0.8rem;
+}
+#current-balance {
+  font-size: 2.3rem;
+}
+.movments {
+  width: 35%;
+  max-height: 500px;
+  background-color: #f1e4c3;
+  transform: translatex(43%);
+  border-radius: 1rem 0rem 0rem;
+  font-size: 0.82rem;
+  overflow-y: scroll;
+}
+.movments__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  margin-bottom: 0.6rem;
+  height: 4rem;
+  border-bottom: 1px solid #eee;
+}
+.movments__type {
+  height: 1.8rem;
+  margin-left: 2rem;
+  width: 7rem;
+  text-align: center;
+  border-radius: 0.7rem;
+  padding-top: 0.2rem;
+}
+.movments__date {
+}
+.movments__value {
+  margin-right: 2rem;
+}
+.deposit {
+  background-color: #84ba78;
+}
+.withdrawl {
+  background-color: #f76b48;
+}
+.summary {
+  display: flex;
+  flex-direction: row;
+  transform: translate(43%);
+  justify-content: left;
+  width: 35%;
+}
+
+.income {
+  color: #287419;
+  padding-right: 1rem;
+}
+.outcome {
+  color: #f83d0f;
+  padding-right: 1rem;
+}
+.interest {
+  color: #bc9f1b;
+}
+.operations {
+  width: 35%;
+  transform: translate(160%, -116%);
+  /* background-color: #f1e4c3; */
+  padding: 1rem;
+}
+.inputstyle {
+  border: 2px;
+  border-radius: 1.2rem;
+  height: 2.3rem;
+  width: 10rem;
+  text-align: center;
+  margin-right: 0.5rem;
+  background-color: #f1e4c3;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.btnstyle {
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1.8rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.transfer {
+  background-color: #c6a969;
+  width: 35%;
+  transform: translate(160%, -400%);
+}
+.transfer__details {
+  background-color: #c6a969;
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows: auto auto;
+}
+.request {
+  background-color: rgb(240, 195, 98);
+  width: 35%;
+  transform: translate(160%, -398%);
+}
+.request__details {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  grid-template-rows: auto auto;
+}
+.close__account {
+  background-color: #f3d391;
+  width: 35%;
+  transform: translate(160%, -398%);
+}
+.close__account__details {
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows: auto auto;
+}
