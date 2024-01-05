@@ -32,12 +32,20 @@ const account4 = {
     interestRate: 1,
     pin: 4444,
 };
+
+const accounts = [account1, account2, account3, account4];
+
+/////////////////////////////////////////////////////// Define Dom ///////////////////////////////////////////////////////
 const containerMovements = document.querySelector(".movements");
+const balanceAmount = document.querySelector(".balance__amount");
+const summaryin = document.querySelector(".summary__value--in");
+const summaryout = document.querySelector(".summary__value--out");
+const summaryinterest = document.querySelector(".summary__value--interest");
+////////////////////////////////////////////////////// Functions /////////////////////////////////////////////////////////
 
+// display movements//
 const displayMovments = movements => {
-
     containerMovements.innerHTML = ``;
-
     movements.forEach(function (mov, i) {
         const type = mov > 0 ? "deposit" : "withdrawal";
         const html = `
@@ -50,4 +58,37 @@ const displayMovments = movements => {
 
     });
 }
+
+//Display Balance//
+const displayBalance = function (movements) {
+    balanceAmount.textContent = movements.reduce((acc, cur) => acc + cur, 0) + ` €`;
+}
+
+
+//Display Summary//
+const displaySummary = function (movements) {
+    summaryin.textContent = movements.filter(mov => mov > 0).reduce((acc, cur) => acc + cur, 0) + ` €`;
+    summaryout.textContent = Math.abs(movements.filter(mov => mov < 0).reduce((acc, cur) => acc + cur, 0)) + ` €`;
+    summaryinterest.textContent = movements.filter(mov => mov > 0).map(mov => mov * 1.2 / 100).filter(int => int >= 1).reduce((acc, cur) => acc + cur, 0);
+}
+
+
+// create usernames//
+const createUsernames = function (users) {
+    users.forEach(user => user.username = user.owner.toLowerCase().split(' ').map(name => name[0]).join(''))
+}
+
+// create withdrawals Array
+// const withdrawals=function(movements){
+//     const withdrawal=movements<0?movements
+//     movements.filter(mov=>mov<0)
+// }
+
+
+/////////////////////////////////////////////////// Calling Functions //////////////////////////////////////////////////
 displayMovments(account1.movements);
+displayBalance(account1.movements);
+displaySummary(account1.movements);
+createUsernames(accounts)
+console.log(accounts);
+
