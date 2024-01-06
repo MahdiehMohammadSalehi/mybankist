@@ -181,7 +181,7 @@ nav {
 
 .form__loan {
   display: grid;
-  grid-template-columns: 2.5fr 0.5fr 4fr;
+  grid-template-columns: 2.5fr 0.5fr 1fr;
   grid-template-rows: auto auto;
   text-align: center;
   gap: 0.1rem 1rem;
