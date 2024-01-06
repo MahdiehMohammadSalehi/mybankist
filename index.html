@@ -24,7 +24,9 @@
         <button id="loginbtn">→</button>
       </div>
     </nav>
-    <main>
+    <!-- main class:app -->
+    <main class="app">
+      <!-- balance -->
       <div class="balance">
         <div>
           <p id="current-balance-label">Current balance</p>
@@ -32,6 +34,7 @@
         </div>
         <p id="current-balance">25 978.1574 $</p>
       </div>
+      <!-- movments -->
       <div class="movments">
         <div class="movments__row">
           <div class="movments__type deposit">8 deposit</div>
@@ -89,6 +92,7 @@
           <div class="movments__value">1700,00</div>
         </div>
       </div>
+      <!-- summary -->
       <div class="summary">
         <p>IN</p>
         <p class="income">27 035,20$</p>
@@ -96,36 +100,47 @@
         <p class="outcome">1082,61 $</p>
         <p>INTEREST</p>
         <p class="interest">323,46 $</p>
+        <button>sort</button>
       </div>
 
-      <div class="transfer">
-        <p>Transfer money</p>
-        <div class="transfer__details">
-          <input type="text" class="inputstyle" />
-          <input type="number" class="inputstyle" />
-          <button class="btnstyle">→</button>
-          <p>Transfer to</p>
-          <p>Amount</p>
-        </div>
+      <!-- OPERATION: TRANSFERS -->
+      <div class="operation operation--transfer">
+        <h2>Transfer money</h2>
+        <form class="form form--transfer">
+          <input type="text" class="form__input form__input--to" />
+          <input type="number" class="form__input form__input--amount" />
+          <button class="form__btn form__btn--transfer">&rarr;</button>
+          <label class="form__label">Transfer to</label>
+          <label class="form__label">Amount</label>
+        </form>
       </div>
-      <div class="request">
-        <p>Request loan</p>
-        <div class="request__details">
-          <input type="number" class="inputstyle" />
-          <button class="btnstyle">→</button>
-          <p>Amount</p>
-        </div>
+
+      <!-- REQUEST MONEY -->
+      <div class="operation operation--loan">
+        <h2>Request loan</h2>
+        <form class="form form--loan">
+          <input type="number" class="form__input form__input--amount" />
+          <button class="form__btn form__btn--loan">&rarr;</button>
+          <label class="form__label">Amount</label>
+        </form>
       </div>
-      <div class="close__account">
-        <p>Close account</p>
-        <div class="close__account__details">
-          <input type="text" class="inputstyle" />
-          <input type="test" class="inputstyle" />
-          <button class="btnstyle">→</button>
-          <p>Confirm user</p>
-          <p>Confirm PIN</p>
-        </div>
+
+      <!-- CLOSE ACCOUNT -->
+      <div class="operation operation--close">
+        <h2>Transfer money</h2>
+        <form class="form form--close">
+          <input type="text" class="form__input form__input--to" />
+          <input type="number" class="form__input form__input--amount" />
+          <button class="form__btn form__btn--transfer">&rarr;</button>
+          <label class="form__label">Confirm user</label>
+          <label class="form__label">Confirm PIN</label>
+        </form>
       </div>
+
+      <!-- LOGOUT TIMER -->
+      <p class="logout-timer">
+        You will be logged out in <span class="timer">05:00</span>
+      </p>
     </main>
   </body>
 </html>
