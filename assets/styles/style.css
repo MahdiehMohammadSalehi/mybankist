@@ -1,188 +1,232 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,600&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Roboto&display=swap");
 
 * {
   box-sizing: border-box;
-  -webkit-overflow-scrolling: none;
   font-family: "Poppins", "Courier New", Courier, monospace;
 }
-/* #C6A969,#597E52 */
 
 body {
-  background-color: #ffffec;
+  background-color: #e5e3e4;
 }
+
+/* nav */
 nav {
-  /* background-color: #f1e4c3; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 0.5rem;
+  /* align-items: flex-end; */
+  margin: 1rem 3rem;
 }
-#nav-info {
-  font-size: 1.2rem;
-  margin-left: 2rem;
-  color: #44446b;
+
+.nav__status--info {
+  margin-top: 1.2rem;
+  font-size: 1.1rem;
 }
-.login-value input {
-  border: 2px;
-  border-radius: 1.2rem;
-  height: 2.3rem;
-  width: 7rem;
+
+.nav__login--user,
+.nav__login--pin {
+  border: none;
+  border-radius: 2rem;
   text-align: center;
-  margin-right: 0.5rem;
-  background-color: #f1e4c3;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  width: 7rem;
+  height: 2.5rem;
+  background-color: #bbc6c8;
+  margin-right: 0.7rem;
 }
-.login-value input:focus {
-  outline: none;
-  border: 1px solid #597e52;
-  box-shadow: 0 0 5px #719ece;
-}
-#loginbtn {
+
+.nav__login--login-btn {
   border: none;
   background-color: transparent;
   font-size: 2rem;
-  margin-right: 2rem;
+  margin-left: 0;
+  padding-left: 0;
 }
-#loginbtn:hover {
-  cursor: pointer;
-  color: #597e52;
-}
-/* main class:app */
 
+/* main */
 .app {
-  max-width: 100rem;
-  margin: 3rem auto;
   display: grid;
-  grid-template-columns: 4fr 3fr;
-  grid-template-rows: auto repeat(3, 9rem) auto;
-  gap: 1rem;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: auto repeat(3, 12rem) auto;
   width: 75%;
-  /* NOTE This creates the fade in/out anumation */
-  /* opacity: 0; */
-  transition: all 1s;
+  margin: auto;
 }
+
+/* balance */
 .balance {
   grid-column: 1 / span 2;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* align-items: flex-end; */
+  align-items: flex-end;
+  padding-top: 1rem;
 }
-.movments {
+
+.balance__label {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.balance__date {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.balance__amount {
+  margin: 0;
+  font-size: 2.7rem;
+}
+
+/* movements */
+.movements {
+  grid-column: 1;
   grid-row: 2 / span 3;
-  grid-column: 1;
-  border-radius: 1rem;
   overflow: scroll;
+  margin-top: 1.5rem;
   margin-right: 2rem;
-  background-color: #f1e4c3;
+  background-color: #f0f4f5;
+  border-radius: 1rem;
+  opacity: 75%;
+  /* height: 23rem; */
 }
-.movments__row {
-  padding: 1rem 2rem;
-  display: flex;
+
+.movements__row {
+  /* if you want to display as flex */
+  /* display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; */
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 3rem;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #eee;
+  padding: 1rem;
+  border-bottom: 1.5px solid #b3aeae;
 }
+
+.movements__type {
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.movements__type--deposit {
+  background-color: #5ac463;
+}
+
+.movements__type--withdrawal {
+  background-color: rgb(194, 77, 77);
+}
+
+/* summary */
+
 .summary {
-  grid-row: 5;
   grid-column: 1;
+  grid-row: 5;
   display: flex;
   flex-direction: row;
-}
-.transfer {
-  padding-top: 0;
-  margin-top: 0;
-  grid-row: 2;
-  grid-column: 2;
-  margin-left: 2rem;
-}
-.title {
-  margin-top: 0;
-}
-.subtitle {
-  margin-top: 0;
-  padding-top: 0;
-  font-size: 0.7rem;
-  padding-left: 1rem;
-}
-.request {
-  grid-row: 3;
-  grid-column: 2;
-  margin-left: 2rem;
-}
-.close__account {
-  grid-row: 4;
-  grid-column: 2;
-  margin-left: 2rem;
-}
-.logout-timer {
-  margin-top: 2rem;
-  grid-row: 5;
-  grid-column: 2;
+  align-items: center;
 }
 
-/* form element style */
-.operation {
-  border-radius: 1rem;
-  /* margin-left: 2rem; */
-  padding: 1rem;
-  width: 28rem;
-}
-.operation h2 {
+.summary__label {
+  padding-right: 0.3rem;
   font-size: 1rem;
 }
-.operation--transfer {
-  background-image: linear-gradient(to top left, #ffb003, #ffcb03);
-}
-.operation--loan {
-  background-image: linear-gradient(to top left, #39b385, #9be15d);
+
+.summary__value {
+  padding-right: 1rem;
+  font-size: 1.3rem;
 }
 
-.operation--close {
-  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+.summary__sortbtn {
+  flex-grow: 2;
+  border-radius: 1rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  text-align: right;
+  margin-right: 2rem;
 }
-.operation--loan label {
-  grid-column: 1;
-  /* grid-template-columns: 2.5fr 1fr 2.5fr; */
+
+/* operation */
+
+.operation {
+  grid-column: 2;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 1.5rem;
 }
-.form.form--loan {
-  grid-template-columns: 2.5fr 1fr 2.5fr;
+
+.operation__transfer {
+  background-color: #469597;
 }
+
+.operation__loan {
+  background-color: #ddbeaa;
+}
+
+.operation__close {
+  background-color: #5ba199;
+}
+
+/* form */
+
 .form {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.5fr;
-  /* grid-template-rows: 1fr 1fr 1fr; */
-  gap: 0.4rem 1rem;
-}
-.form__input {
-  border: 2px;
-  border-radius: 1.2rem;
-  height: 2.3rem;
-  width: 10rem;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows: auto auto;
   text-align: center;
-  /* margin-right: 0.5rem; */
-  background-color: #f1e4c3;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  margin-bottom: 0;
-  padding-bottom: 0;
+  gap: 0.1rem 1rem;
 }
 
-.form__input:focus {
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.6);
+.form__loan {
+  display: grid;
+  grid-template-columns: 2.5fr 0.5fr 4fr;
+  grid-template-rows: auto auto;
+  text-align: center;
+  gap: 0.1rem 1rem;
 }
+
+.form__input {
+  border: none;
+  border-radius: 0.5rem;
+  height: 2rem;
+  opacity: 60%;
+  text-align: center;
+}
+
 .form__btn {
   border: none;
-  border-radius: 0.7rem;
-  font-size: 1.8rem;
-  background-color: #fff;
-  cursor: pointer;
-  transition: all 0.3s;
+  border-radius: 0.5rem;
+  font-size: 1rem;
 }
-.operation label {
+
+.form__label {
+  margin-top: 0.6rem;
+  padding-bottom: 1rem;
   font-size: 0.8rem;
+}
+
+.form__label__loan {
+  grid-row: 2;
+}
+
+.form__transfer {
+  grid-row: 2;
+}
+
+.form__loan {
+  grid-row: 3;
+}
+
+.form__close {
+  grid-row: 4;
+}
+
+/* timer */
+.timer {
+  grid-column: 2;
+  text-align: end;
+  font-size: 0.8rem;
+  margin-top: 0.7rem;
 }
