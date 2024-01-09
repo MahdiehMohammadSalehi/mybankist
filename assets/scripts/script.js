@@ -47,12 +47,18 @@ const loginPIN = document.querySelector(".nav__login--pin");
 const loginBtn = document.querySelector(".nav__login--btn");
 const statusInfo = document.querySelector(".nav__status--info");
 const app = document.querySelector(".app");
+const transferBtn = document.querySelector(".transfer__btn");
+const transferTo = document.querySelector(".transfer__to");
+const transferAmount = document.querySelector(".transfer__amount");
+const loanAmount = document.querySelector(".loan__amount");
+const loanBtn = document.querySelector(".loan__btn");
+
 ////////////////////////////////////////////////////// Functions /////////////////////////////////////////////////////////
 
 // display movements//
-const displayMovments = (movements) => {
+const displayMovments = (acc) => {
   containerMovements.innerHTML = ``;
-  movements.forEach(function (mov, i) {
+  acc.movements.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
         <div class="movements__row">
@@ -65,28 +71,28 @@ const displayMovments = (movements) => {
 };
 
 //Display Balance//
-const displayBalance = function (movements) {
-  balanceAmount.textContent =
-    movements.reduce((acc, cur) => acc + cur, 0) + ` €`;
+const displayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, cur) => acc + cur, 0);
+  balanceAmount.textContent = acc.balance + ` €`;
 };
 
 //Display Summary//
-const displaySummary = function (movements) {
+const displaySummary = function (acc) {
   summaryin.textContent =
-    movements.filter((mov) => mov > 0).reduce((acc, cur) => acc + cur, 0) +
+    acc.movements.filter((mov) => mov > 0).reduce((acc, cur) => acc + cur, 0) +
     ` €`;
   summaryout.textContent =
     Math.abs(
-      movements.filter((mov) => mov < 0).reduce((acc, cur) => acc + cur, 0)
+      acc.movements.filter((mov) => mov < 0).reduce((acc, cur) => acc + cur, 0)
     ) + ` €`;
-  summaryinterest.textContent = movements
+  summaryinterest.textContent = acc.movements
     .filter((mov) => mov > 0)
     .map((mov) => (mov * 1.2) / 100)
     .filter((int) => int >= 1)
     .reduce((acc, cur) => acc + cur, 0);
 };
 
-// create usernames//
+// create usernames
 const createUsernames = function (users) {
   users.forEach(
     (user) =>
@@ -98,9 +104,22 @@ const createUsernames = function (users) {
   );
 };
 
-//Check user and pin
+//updateUI
+const updateUI = function (acc) {
+  //display movments
+  displayMovments(acc);
+  //display balance
+  displayBalance(acc);
+  //display summary
+  displaySummary(acc);
+};
+
+//global current user variable
+let curUser;
+
+//Check username and pin
 const checkUserPIN = function () {
-  const curUser = accounts.find(
+  curUser = accounts.find(
     (acc) =>
       acc.username === loginUser.value && acc.pin === Number(loginPIN.value)
   );
@@ -112,11 +131,7 @@ const checkUserPIN = function () {
     loginUser.value = loginPIN.value = "";
     loginPIN.blur();
     //display movments
-    displayMovments(curUser.movements);
-    //display balance
-    displayBalance(curUser.movements);
-    //display summary
-    displaySummary(curUser.movements);
+    updateUI(curUser);
   }
 };
 
@@ -124,7 +139,36 @@ const checkUserPIN = function () {
 
 createUsernames(accounts);
 
+//login
 loginBtn.addEventListener("click", checkUserPIN);
-loginPIN.addEventListener("keydown", function (e) {
+loginPIN.addEventListener("keydown", (e) => {
   e.key === "Enter" && checkUserPIN();
+});
+
+//transfer
+transferBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(transferAmount.value);
+  const reciverAcc = accounts.find((acc) => acc.username === transferTo.value);
+  if (
+    amount > 0 &&
+    amount <= curUser.balance &&
+    reciverAcc?.username != curUser.username &&
+    reciverAcc
+  ) {
+    curUser.movements.push(-amount);
+    reciverAcc.movements.push(transferAmount.value);
+    updateUI(curUser);
+  }
+  transferAmount.value = transferTo.value = "";
+});
+
+//loan
+loanBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(loanAmount.value);
+  if (amount > 0 && amount <= curUser.balance) {
+    curUser.movements.push(amount);
+    updateUI(curUser);
+  }
 });
