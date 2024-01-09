@@ -36,11 +36,17 @@ const account4 = {
 const accounts = [account1, account2, account3, account4];
 
 /////////////////////////////////////////////////////// Define Dom ///////////////////////////////////////////////////////
+
 const containerMovements = document.querySelector(".movements");
 const balanceAmount = document.querySelector(".balance__amount");
 const summaryin = document.querySelector(".summary__value--in");
 const summaryout = document.querySelector(".summary__value--out");
 const summaryinterest = document.querySelector(".summary__value--interest");
+const loginUser = document.querySelector(".nav__login--user");
+const loginPIN = document.querySelector(".nav__login--pin");
+const loginBtn = document.querySelector(".nav__login--btn");
+const statusInfo = document.querySelector(".nav__status--info");
+const app = document.querySelector(".app");
 ////////////////////////////////////////////////////// Functions /////////////////////////////////////////////////////////
 
 // display movements//
@@ -92,15 +98,33 @@ const createUsernames = function (users) {
   );
 };
 
-// create withdrawals Array
-// const withdrawals=function(movements){
-//     const withdrawal=movements<0?movements
-//     movements.filter(mov=>mov<0)
-// }
+//Check user and pin
+const checkUserPIN = function () {
+  const curUser = accounts.find(
+    (acc) =>
+      acc.username === loginUser.value && acc.pin === Number(loginPIN.value)
+  );
+  if (curUser) {
+    //display UI and statusInfo
+    statusInfo.textContent = `Welcome back, ${curUser.owner.split(" ")[0]}`;
+    app.style.opacity = 100;
+    //clear input fields
+    loginUser.value = loginPIN.value = "";
+    loginPIN.blur();
+    //display movments
+    displayMovments(curUser.movements);
+    //display balance
+    displayBalance(curUser.movements);
+    //display summary
+    displaySummary(curUser.movements);
+  }
+};
 
 /////////////////////////////////////////////////// Calling Functions //////////////////////////////////////////////////
-displayMovments(account1.movements);
-displayBalance(account1.movements);
-displaySummary(account1.movements);
+
 createUsernames(accounts);
-console.log(accounts);
+
+loginBtn.addEventListener("click", checkUserPIN);
+loginPIN.addEventListener("keydown", function (e) {
+  e.key === "Enter" && checkUserPIN();
+});
