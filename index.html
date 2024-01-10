@@ -2,29 +2,27 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="assets/scripts/script.js" defer></script>
     <link rel="stylesheet" href="assets/styles/style.css" />
     <title>My Bankist</title>
 </head>
 
 <body>
-
     <!-- navigatin -->
     <nav>
         <p class="nav__status--info">login to get started</p>
-        <img src="img/icons8-bank-building-60.png" alt="Logo">
+        <img src="img/icons8-bank-building-60.png" alt="Logo" />
         <div class="nav__login">
-            <input class="nav__login--user" type="text" placeholder="User">
-            <input class="nav__login--pin" type="text" placeholder="PIN">
-            <button class="nav__login--login-btn">→</button>
+            <input class="nav__login--user" type="text" placeholder="User" />
+            <input class="nav__login--pin" type="text" placeholder="PIN" />
+            <button class="nav__login--btn">→</button>
         </div>
     </nav>
 
     <!-- main -->
     <main class="app">
-
         <!-- balance -->
         <div class="balance">
             <div>
@@ -65,9 +63,9 @@
         <div class="operation operation__transfer">
             <p>Transfer Money</p>
             <form class="form form__transfer">
-                <input class="form__input form__input--transferto" type="text">
-                <input class="form__input form__input--transferamount" type="number">
-                <button class="form__btn transferbtn">→</button>
+                <input class="form__input transfer__to" type="text" />
+                <input class="form__input transfer__amount" type="number" />
+                <button class="form__btn transfer__btn">→</button>
                 <label class="form__label">Transfer to</label>
                 <label class="form__label">Amount</label>
             </form>
@@ -77,8 +75,8 @@
         <div class="operation operation__loan">
             <p>Loan Request</p>
             <form class="form__loan">
-                <input class="form__input" type="number">
-                <button class="form__btn">→</button>
+                <input class="form__input loan__amount" type="number" />
+                <button class="form__btn loan__btn">→</button>
                 <label class="form__label form__label__loan">Amount</label>
             </form>
         </div>
@@ -87,8 +85,8 @@
         <div class="operation operation__close">
             <p>Close Account</p>
             <form class="form form__close">
-                <input class="form__input" type="text">
-                <input class="form__input" type="number">
+                <input class="form__input" type="text" />
+                <input class="form__input" type="number" />
                 <button class="form__btn">→</button>
                 <label class="form__label">Confirm user</label>
                 <label class="form__label">Confirm PIN</label>
@@ -97,11 +95,9 @@
 
         <!-- time out -->
         <div class="timer">
-            <p>You will be logged out in </p>
+            <p>You will be logged out in</p>
         </div>
-
     </main>
-
 </body>
 
 </html>
