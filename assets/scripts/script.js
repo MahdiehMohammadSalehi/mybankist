@@ -41,6 +41,9 @@ const balanceAmount = document.querySelector(".balance__amount");
 const summaryin = document.querySelector(".summary__value--in");
 const summaryout = document.querySelector(".summary__value--out");
 const summaryinterest = document.querySelector(".summary__value--interest");
+const transferTo = document.querySelector(".form__input--transferto");
+const transferAmount = document.querySelector(".form__input--transferamount");
+const transferBtn = document.querySelector(".transferbtn");
 ////////////////////////////////////////////////////// Functions /////////////////////////////////////////////////////////
 
 // display movements//
@@ -78,11 +81,7 @@ const createUsernames = function (users) {
     users.forEach(user => user.username = user.owner.toLowerCase().split(' ').map(name => name[0]).join(''))
 }
 
-// create withdrawals Array
-// const withdrawals=function(movements){
-//     const withdrawal=movements<0?movements
-//     movements.filter(mov=>mov<0)
-// }
+
 
 
 /////////////////////////////////////////////////// Calling Functions //////////////////////////////////////////////////
@@ -91,4 +90,19 @@ displayBalance(account1.movements);
 displaySummary(account1.movements);
 createUsernames(accounts)
 console.log(accounts);
+////////////////////////////////////////////////// BTNs ///////////////////////////////////////////////////////////////
 
+//transfer Btn
+transferBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    recieverAccount = accounts.find(acc => acc.username === transferTo.value && acc);
+    if (recieverAccount.balance >= Number(transferAmount) && recieverAccount && recieverAccount.username != currentAccount.username) {
+        recieverAccount.balance += transferAmount;
+        currentAccount.balance -= transferAmount;
+    }
+})
+
+//close Btn
+closebtn.addEventListener("click", function (e) {
+
+})
