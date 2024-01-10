@@ -52,6 +52,9 @@ const transferTo = document.querySelector(".transfer__to");
 const transferAmount = document.querySelector(".transfer__amount");
 const loanAmount = document.querySelector(".loan__amount");
 const loanBtn = document.querySelector(".loan__btn");
+const closeUser = document.querySelector(".close__user");
+const closePIN = document.querySelector(".close__PIN");
+const closeBtn = document.querySelector(".close__btn");
 
 ////////////////////////////////////////////////////// Functions /////////////////////////////////////////////////////////
 
@@ -167,8 +170,21 @@ transferBtn.addEventListener("click", function (e) {
 loanBtn.addEventListener("click", function (e) {
     e.preventDefault();
     const amount = Number(loanAmount.value);
-    if (amount > 0 && amount <= curUser.balance) {
+
+    if (amount > 0 && amount <= curUser.balance && accounts.movements.some(mov => mov >= 0.1 * amount)) {
         curUser.movements.push(amount);
         updateUI(curUser);
     }
+    loanAmount.value = '';
 });
+
+//close
+closeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (curUser.username === closeUser.value && curUser.pin == Number(closePIN.value)) {
+        const idx = accounts.findIndex(acc => acc.username === user.username);
+        accounts.splice(idx, 1);
+        app.style.opacity = 0;
+    }
+    closeUser.value = closePIN.value = '';
+})
