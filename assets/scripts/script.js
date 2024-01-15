@@ -93,13 +93,18 @@ const transferTo = document.querySelector(".transfer__to");
 const transferAmount = document.querySelector(".transfer__amount");
 const loanAmount = document.querySelector(".loan__amount");
 const loanBtn = document.querySelector(".loan__btn");
-
+const closeUser = document.querySelector(".close__user");
+const closePIN = document.querySelector(".close__PIN");
+const closeBtn = document.querySelector(".close__btn");
+const sortbtn = document.querySelector(".summary__sortbtn");
 ////////////////////////////////////////////////////// Functions /////////////////////////////////////////////////////////
 
 // display movements//
-const displayMovments = (acc) => {
+const displayMovments = (acc, sort = false) => {
+  const mov =
+    sort === true ? acc.movements.sort((a, b) => a - b) : acc.movements;
   containerMovements.innerHTML = ``;
-  acc.movements.forEach(function (mov, i) {
+  mov.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
         <div class="movements__row">
@@ -218,4 +223,11 @@ loanBtn.addEventListener("click", function (e) {
   }
   loanAmount.value = "";
 });
+
+//sort
+sortbtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  displayMovments(curUser, true);
+});
+
 ////////////////////////
