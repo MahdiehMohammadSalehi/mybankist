@@ -97,6 +97,8 @@ const closeUser = document.querySelector(".close__user");
 const closePIN = document.querySelector(".close__PIN");
 const closeBtn = document.querySelector(".close__btn");
 const sortbtn = document.querySelector(".summary__sortbtn");
+const date = document.querySelector(".balance__date");
+
 ////////////////////////////////////////////////////// Functions /////////////////////////////////////////////////////////
 
 // display movements//
@@ -105,10 +107,17 @@ const displayMovments = (acc, sort = false) => {
     sort === true ? acc.movements.sort((a, b) => a - b) : acc.movements;
   containerMovements.innerHTML = ``;
   mov.forEach(function (mov, i) {
+    const date = new Date(acc.movementsDates[i]);
+    const day = `${date.getDay()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    const displayDate = `${day}/${month}/${year}`;
+
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
         <div class="movements__row">
            <div class="movements__type movements__type--${type}">${i} ${type}</div>
+           <div class="movements__date">${displayDate}</div>
           <div class="movements__amount">${mov.toFixed(2)}€</div>
         </div>
         `;
@@ -167,6 +176,13 @@ const updateUI = function (acc) {
 //global current user variable
 let curUser;
 
+//fake user
+// curUser = account1;
+// updateUI(curUser);
+// app.style.opacity = 100;
+
+//day/mnth/yr
+
 //Check username and pin
 const checkUserPIN = function () {
   curUser = accounts.find(
@@ -177,6 +193,16 @@ const checkUserPIN = function () {
     //display UI and statusInfo
     statusInfo.textContent = `Welcome back, ${curUser.owner.split(" ")[0]}`;
     app.style.opacity = 100;
+
+    //display date
+    const now = new Date();
+    const day = `${now.getDay()}`.padStart(2, 0);
+    const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    const year = now.getFullYear();
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+    date.textContent = `${day}/${month}/${year} ,   ${hour}:${minute}`;
+
     //clear input fields
     loginUser.value = loginPIN.value = "";
     loginPIN.blur();
