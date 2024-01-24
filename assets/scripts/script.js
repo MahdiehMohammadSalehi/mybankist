@@ -108,7 +108,7 @@ const displayMovments = (acc, sort = false) => {
   containerMovements.innerHTML = ``;
   mov.forEach(function (mov, i) {
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDay()}`.padStart(2, 0);
+    const day = `${date.getDate()}`.padStart(2, 0);
     const month = `${date.getMonth() + 1}`.padStart(2, 0);
     const year = date.getFullYear();
     const displayDate = `${day}/${month}/${year}`;
@@ -196,11 +196,11 @@ const checkUserPIN = function () {
 
     //display date
     const now = new Date();
-    const day = `${now.getDay()}`.padStart(2, 0);
+    const day = `${now.getDate()}`.padStart(2, 0);
     const month = `${now.getMonth() + 1}`.padStart(2, 0);
     const year = now.getFullYear();
-    const hour = now.getHours();
-    const minute = now.getMinutes();
+    const hour = `${now.getHours()}`.padStart(2, 0);
+    const minute = `${now.getMinutes()}`.padStart(2, 0);
     date.textContent = `${day}/${month}/${year} ,   ${hour}:${minute}`;
 
     //clear input fields
@@ -234,6 +234,9 @@ transferBtn.addEventListener("click", function (e) {
   ) {
     curUser.movements.push(-amount);
     reciverAcc.movements.push(transferAmount.value);
+    //add transfer date
+    curUser.movementsDates.push(new Date().toISOString());
+    reciverAcc.movementsDates.push(new Date().toISOString());
     updateUI(curUser);
   }
   transferAmount.value = transferTo.value = "";
@@ -245,6 +248,7 @@ loanBtn.addEventListener("click", function (e) {
   const amount = Math.trunc(Number(loanAmount.value));
   if (amount > 0 && amount <= curUser.balance) {
     curUser.movements.push(amount);
+    curUser.movementsDates.push(new Date().toISOString());
     updateUI(curUser);
   }
   loanAmount.value = "";
