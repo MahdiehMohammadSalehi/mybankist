@@ -247,3 +247,6 @@ nav {
   font-size: 0.8rem;
   margin-top: 0.7rem;
 }
+.timer__span {
+  font-weight: 600;
+}
